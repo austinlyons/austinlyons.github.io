@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Free website using Jekyll and Github</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Free website using Jekyll and Github">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Free website using Jekyll and Github">
+    <meta property="og:description" content="">
+
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://127.0.0.1:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/uno.css?v=731201513b" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css?v=731201513b" />
+
+    <link rel="canonical" href="http://www.seeaustinhack.com/free-website-using-jekyll-and-github/" />
+    
+    <meta property="og:site_name" content="AUSTIN LYONS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Free website using Jekyll and Github" />
+    <meta property="og:description" content="Want to make a simple, decent-looking website so you can publish some  thoughts and code-snippets? Don&#x27;t want to pay for hosting?  Try using Jekyll to build your website and host it with GitHub Pages. After the initial setup and configuration,..." />
+    <meta property="og:url" content="http://www.seeaustinhack.com/free-website-using-jekyll-and-github/" />
+    <meta property="article:published_time" content="2014-05-01T17:00:00.000Z" />
+    <meta property="article:modified_time" content="2014-06-17T23:05:11.432Z" />
+    <meta property="article:tag" content="archived" />
+    <meta property="article:tag" content="github" />
+    <meta property="article:tag" content="jekyll" />
+    <meta property="article:tag" content="tech" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Free website using Jekyll and Github" />
+    <meta name="twitter:description" content="Want to make a simple, decent-looking website so you can publish some  thoughts and code-snippets? Don&#x27;t want to pay for hosting?  Try using Jekyll to build your website and host it with GitHub Pages. After the initial setup and configuration,..." />
+    <meta name="twitter:url" content="http://www.seeaustinhack.com/free-website-using-jekyll-and-github/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "AUSTIN LYONS",
+    "author": {
+        "@type": "Person",
+        "name": "Austin Lyons",
+        "image": "//www.gravatar.com/avatar/aed0bec360cc1029f8cb094c7cdb11e7?d=404",
+        "url": "http://www.seeaustinhack.com/author/austin-lyons",
+        "sameAs": "http://www.seeaustinhack.com",
+        "description": null
+    },
+    "headline": "Free website using Jekyll and Github",
+    "url": "http://www.seeaustinhack.com/free-website-using-jekyll-and-github/",
+    "datePublished": "2014-05-01T17:00:00.000Z",
+    "dateModified": "2014-06-17T23:05:11.432Z",
+    "keywords": "archived, github, jekyll, tech",
+    "description": "Want to make a simple, decent-looking website so you can publish some  thoughts and code-snippets? Don&#x27;t want to pay for hosting?  Try using Jekyll to build your website and host it with GitHub Pages. After the initial setup and configuration,..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6" />
+    <link rel="alternate" type="application/rss+xml" title="AUSTIN LYONS" href="http://www.seeaustinhack.com/rss/" />
+
+</head>
+<body class="post-template tag-archived tag-github tag-jekyll tag-tech no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(../content/images/2014/Oct/may_the_sun_be_upon_your_face_by_fleurss.jpeg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <h1 class="panel-cover__title panel-title"><a href="http://www.seeaustinhack.com" title="link to homepage for AUSTIN LYONS">AUSTIN LYONS</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">Software Engineer</span>
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          <p>I am not the man I ought to be, I am not the man I wish to be, and I am not the man I hope to be, but by the grace of God, I am not the man I used to be.
+          <br>
+          John Newton <a href="http://books.google.com/books?id=mv4oAAAAYAAJ&dq=ah%2C%20how%20imperfect%20and%20deficient!%20I%20am%20not%20what%20I%20wish%20to%20be&pg=PA186#v=onepage&q=ah%2C%20how%20imperfect%20and%20deficient!%20I%20am%20not%20what%20I%20wish%20to%20be&f=false" target="_blank">(paraphrased)</a>
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="link to AUSTIN LYONS blog" class="blog-button">Technical Blog</a></li>
+              <li class="navigation__item"><a href="https://medium.com/@theaustinlyons/" class="blog-button" window="_blank">Product & Strategy Blog</a></li>
+              <li class="navigation__item"><a href="../reading-list/index.html" title="link to reading list" class="reading-button">Currently Reading</a></li>
+            </ul>
+          </nav>
+
+          
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+    <!-- GitHub -->
+    <li class="navigation__item">
+      <a href="https://github.com/austinlyons" title="Austin Lyons on GitHub">
+        <i class='icon icon-social-github'></i>
+        <span class="label">GitHub</span>
+      </a>
+    </li>
+
+    <!-- LinkedIn -->
+    <li class="navigation__item">
+      <a href="https://www.linkedin.com/in/austinlyons" title="Austin Lyons on LinkedIn">
+        <i class='icon icon-social-linkedin'></i>
+        <span class="label">LinkedIn</span>
+      </a>
+    </li>
+
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="http://twitter.com/theaustinlyons" title="@theaustinlyons on Twitter">
+      <i class='icon icon-social-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-slate"></div>
+  </div>
+</header>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-36006810-1', 'auto');
+              ga('send', 'pageview');
+
+</script>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+<!--          <div id="top-nav">
+            <ul>
+              <li><a href="/">Home</li>
+              <li><a href="/tag/tech/">Tech</li>
+              <li><a href="/tag/startups/">Startups</li>
+              <li><a href="/tag/faith/">Faith</a></li>
+              <li><a href="/tag/life/">Life</a></li>
+            </ul>
+          </div> -->
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="01 May 2014" class="post-meta__date date">01 May 2014</time> &#8226; <span class="post-meta__tags tags">on <a href="../tag/archived/index.html">archived</a>, <a href="../tag/github/index.html">github</a>, <a href="../tag/jekyll/index.html">jekyll</a>, <a href="../tag/tech/index.html">tech</a></span>
+        <!--<span class="post-meta__author author"><img src="//www.gravatar.com/avatar/aed0bec360cc1029f8cb094c7cdb11e7?d=404" alt="profile image for Austin Lyons" class="avatar post-meta__avatar" /> by Austin Lyons</span>-->
+      </div>
+      <h1 class="post-title">Free website using Jekyll and Github</h1>
+    </header>
+
+    <section class="post tag-archived tag-github tag-jekyll tag-tech">
+      <p>Want to make a simple, decent-looking website so you can publish some <br />
+thoughts and code-snippets? Don't want to pay for hosting? <br />
+Try using <a href="http://www.jekyllrb.com">Jekyll</a> to build your website and host it with <a href="http://pages.github.com/">GitHub Pages</a>. After the initial setup and configuration, publishing thoughts to a blog will be as simple as creating a text file on your laptop and saving it to the cloud. You don't even need to write HTML. </p>
+
+<p>Here's how I did it.</p>
+
+<h3 id="hostyourwebsitewithgithub">Host your website with GitHub</h3>
+
+<p>If I create a repository on GitHub called austinlyons.github.io and use <br />
+it to store the contents of my website, GitHub will display my website <br />
+at <a href='http://austinlyons.github.io'>http://austinlyons.github.io</a>. </p>
+
+<p>I'll walk you through creating a GitHub <br />
+repository that contains the source code for a basic website. The <br />
+website will be accessible (for free!) on the web at <br />
+your_github_username.github.io. </p>
+
+<p>This part of the tutorial won't take long for people who are already familiar with git and have a GitHub account. <br />
+The rest can install git and signup for a GitHub account as we go - it <br />
+will take you a little longer to complete this section, but it's a great excuse <br />
+for you to learn about git and GitHub.</p>
+
+<h4 id="createthesourcecoderepositoryatgithub">Create the source code repository at GitHub</h4>
+
+<p>Login to <a href="https://github.com/">GitHub</a> or <a href="https://help.github.com/articles/signing-up-for-a-new-github-account">create a free <br />
+account</a> if you <br />
+don't have one yet. If you aren't familiar with GitHub, they are <a href="http://techcrunch.com/2012/07/14/what-exactly-is-github-anyway/">a company that lets you easily store <br />
+source code on their servers</a>. If that doesn't mean much to you yet, no worries. You'll catch on quickly. </p>
+
+<p>Next, <a href="https://help.github.com/articles/create-a-repo">create a repository</a> named insert<em>your</em>username<em>here.github.io. _Don't initialize the repository with a README, a .gitignore, or a license</em>. Just leave everything blank <br />
+(to create a completely empty repository) and make sure it's public.</p>
+
+<p>My GitHub username is <br />
+<a href="http://www.github.com/austinlyons">austinlyons</a>, so I created
+<a href="http://www.github.com/austinlyons/austinlyons.github.io">austinlyons.github.io</a>. </p>
+
+<h4 id="createalocalrepository">Create a local repository</h4>
+
+<p>Instead of writing the website from scratch, let's just take an existing <br />
+website and modify it to suit our needs. We'll use <a href="http://jekyllbootstrap.com/">Jekyll <br />
+Bootstrap</a>. </p>
+
+<p>Open up your terminal (command prompt if you're running Windows). I use iTerm on Mac OS X. If you are on a Mac and don't know what I'm talking about, you can just use Terminal (type Terminal in spotlight). If you're using Linux, you already know what you're doing, so carry on. If you don't have Git installed already, now is the time to <a href="https://www.google.com/search?q=install+git">install Git</a>. </p>
+
+<p>If you've never heard of Git, I'm glad to be the one to introduce you. It's a simple distributed version control system - think Dropbox for programmers. You can learn more from <a href="http://git-scm.com/book/en/Getting-Started">Git's website</a>. Note that Git and GitHub are two different things - Git is a program that you run on your computer, and GitHub is a company that specializes in hosting Git projects on their servers. </p>
+
+<p>Let's copy the source code of the example website to our computer. I'll <br />
+use the dollar sign ($) to represent the terminal prompt (so you'll type <br />
+everything after the dollar sign). </p>
+
+<p>We'll download the example website from the Jekyll <br />
+Bootstrap repository. <em>Substitute your GitHub username wherever you see <br />
+austinlyons</em>.</p>
+
+<pre><code>$ git clone https://github.com/plusjade/jekyll-bootstrap.git austinlyons.github.io
+</code></pre>
+
+<p>What we're doing here is downloading the source code of an existing <br />
+website (created with Jekyll) to our computer and storing it in a folder called austinlyons.github.io <em>(your_username.github.io)</em>. <br />
+You should see something like:</p>
+
+<pre><code>Cloning into austinlyons.github.io...
+remote: Counting objects: 1868, done.
+remote: Compressing objects: 100% (951/951), done.
+remote: Total 1868 (delta 921), reused 1720 (delta 804)
+Receiving objects: 100% (1868/1868), 511.68 KiB | 307 KiB/s, done.
+Resolving deltas: 100% (921/921), done.
+</code></pre>
+
+<h4 id="addtheexamplecodetoyourrepository">Add the example code to your repository</h4>
+
+<p>Now that you've downloaded the example website to your computer, let's <br />
+copy it to GitHub. (Remember to substitute your username wherever you <br />
+see austinlyons). If you've never pushed code from your computer to a <br />
+GitHub repository using SSH, you'll need to follow the directions <br />
+<a href="https://help.github.com/articles/generating-ssh-keys">provided by
+GitHub</a>. If you <br />
+have trouble, tweet at me (referring to this tutorial) and I'll help you <br />
+out. </p>
+
+<pre><code>$ cd austinlyons.github.io
+$ git remote set-url origin git@github.com:austinlyons/austinlyons.github.io.git
+$ git push origin master
+</code></pre>
+
+<p>We need to be inside the Git project before we can issue Git commands, so <code>cd austinlyons.github.io</code> moves us into the folder named austinlyons.github.io. (cd stands for change directory). </p>
+
+<p>The second command <code>git remote set-url origin</code> tells git to forget about the <br />
+repository that we copied this code from and instead remember the URL <br />
+for our new repository's address. Then, when we run <code>git push origin master</code>, <br />
+git knows to send the code to the new repository that we just created. <br />
+(If we didn't do the second command above, git would try to push the
+code back to the original repository that we copied it from).</p>
+
+<p>If you see something similiar to the following, you've successfully <br />
+copied the example website to your GitHub repository.</p>
+
+<pre><code>Counting objects: 883, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (404/404), done.
+Writing objects: 100% (883/883), 290.25 KiB, done.
+Total 883 (delta 432), reused 854 (delta 419)
+To git@github.com:austinlyons/test.git
+* [new branch]      master -&gt; master
+</code></pre>
+
+<h4 id="yourwebsiteislive">Your website is live!</h4>
+
+<p>It may take a few minutes, but you should be able to access your website <br />
+at <a href='http://your_username.github.io'>http://your_username.github.io</a>. In my case, GitHub shows this website <br />
+at <a href="http://austinlyons.github.io">http://austinlyons.github.io</a>. </p>
+
+<h3 id="edityourwebsitewiththehelpofjekyll">Edit your website with the help of Jekyll</h3>
+
+<p>We can make changes to your website locally (on your computer), and <br />
+then push them to GitHub.</p>
+
+<h4 id="installjekyll">Install Jekyll</h4>
+
+<p>Jekyll is a program that turns simple textfiles into a static website. <br />
+One cool feature is that Jekyll allows you to write your blog posts (etc) using <br />
+<a href="http://daringfireball.net/projects/markdown">Markdown</a> instead of HTML! (Markdown is <em>super simple</em>). 
+Jekyll has some nice documentation at <a href="http://www.jekyllrb.com">jekyllrb.com</a>, I encourage you to check it out to learn more.</p>
+
+<p>Jekyll is written with the programming language Ruby. To see if you have <br />
+Ruby installed, open up your terminal and type</p>
+
+<pre><code>$ which ruby
+</code></pre>
+
+<p>If Ruby is installed, you'll see a path to the particular directory that <br />
+holds the Ruby executable. You could also type</p>
+
+<pre><code>$ ruby --version
+</code></pre>
+
+<p>to see which version of Ruby you're running. <br />
+If you don't have Ruby, you'll want to <a href="http://jekyllrb.com/docs/installation/">install it</a>.</p>
+
+<p>Once we have Ruby installed, we'll install Jekyll. </p>
+
+<pre><code>$ gem install jekyll
+</code></pre>
+
+<h4 id="runjekyll">Run Jekyll</h4>
+
+<p>Let's fire up jekyll. First, we need to navigate to <br />
+austinlyons.github.io. We'll tell Jekyll to run a simple webserver which will <br />
+allow us to see our website in a browser while we make changes to it.</p>
+
+<p>We'll use the --watch flag to tell Jekyll to watch for <br />
+changes to any of the source files and regenerate automagically</p>
+
+<pre><code>$ jekyll serve --watch
+</code></pre>
+
+<p>At this point you should be able to load your website at <a href="http://localhost:4000">http://localhost:4000</a>.</p>
+
+<h4 id="edityourwebsite">Edit your website</h4>
+
+<p>The first thing I did to this website was install a new theme. This <br />
+website uses the dinky theme. You can see the available themes <br />
+<a href="http://themes.jekyllbootstrap.com/preview/dinky/">here</a>. </p>
+
+<p>To install the theme, let's open up another Terminal window, navigate to <br />
+austinlyons.github.io, and run</p>
+
+<pre><code>$ rake theme:install git="git://github.com/sodabrew/theme-dinky.git"
+</code></pre>
+
+<p>After it finishes installing, refresh your website at <a href="http://localhost:4000">http://localhost:4000</a> and your website should have a new look.</p>
+
+<p>Next, I edited <code>_config.yml</code>. In particular, I changed the title, <br />
+removed the author, edited the github and twitter usernames, and turned <br />
+off comments. I then moved all of the existing HTML files (like <br />
+archive.html) to the _drafts folder (just in case I want to reference <br />
+them in the future). </p>
+
+<p>For more suggestions on how to customize your website, check out <a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html">Jekyll <br />
+Bootstrap's <br />
+documentation</a> <br />
+or <a href="http://jekyllrb.com/docs/home/">Jekyll's documentation</a>.</p>
+
+<p>As you edit your website, you should be able to see your changes when <br />
+you refresh at <a href="http://localhost:4000">http://localhost:4000</a>. If your <br />
+changes aren't showing up, try killing the <code>jekyll serve --watch</code> <br />
+process by hitting Control+C in that terminal windown. Then run <code>jekyll <br />
+serve --watch</code>, open your browser, and try refreshing. </p>
+
+<h4 id="pushingchangestogithub">Pushing changes to GitHub</h4>
+
+<p>Now that you've made your local copy of your website look amazing, it's <br />
+time to update austinlyons.github.io. First we need to tell git about <br />
+the changes we've made, and then we'll send the updated files to GitHub.</p>
+
+<p>From your root directory (austinlyons.github.io folder), type</p>
+
+<pre><code>$ git status
+</code></pre>
+
+<p>You'll see that git knows which files you've changed. We need to approve <br />
+this changes.</p>
+
+<pre><code>$ git add .
+</code></pre>
+
+<p>Now we commit the changes we've approved and write a little message to <br />
+remind us or others in the future what we just did.</p>
+
+<pre><code>$ git commit -m "Initial configuration of my awesome website"
+</code></pre>
+
+<p>Let's send the updated code to GitHub.</p>
+
+<pre><code>$ git push origin master 
+</code></pre>
+
+<p>Now visit <a href="http://austinlyons.github.io">http://austinlyons.github.io</a>. <br />
+<em>As always, substitute your username for austinlyons here</em>. Within a <br />
+couple of minutes you should see your updated website!</p>
+
+<h4 id="bonuspointscustomdomainname">Bonus points: custom domain name</h4>
+
+<p>austinlyons.github.io is a fine domain name, but I already own the domain seeaustinhack.com. <br />
+I want my GitHub hosted website to be addressable via seeaustinhack.com. <br />
+Fortunately, GitHub makes it easy to set up a custom domain. Per <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">these <br />
+instructions</a>, I simply created a file named <code>CNAME</code> <br />
+which has the following line of text in it <code>www.seeaustinhack.com</code>. <br />
+I added this new file to my repository and sent it to GitHub. </p>
+
+<pre><code>git add .
+git commit -m 'Add CNAME record'
+git push master origin
+</code></pre>
+
+<p>Then I logged in to GoDaddy (who I purchased the domain name from) and <br />
+updated my A record to <code>204.232.175.78</code>. After waiting about 10 minutes, <br />
+I was able to visit www.seeaustinhack.com and see my GitHub hosted <br />
+website that I created with Jekyll.</p>
+
+<h3 id="theend">The End</h3>
+
+<p>This tutorial was written with Markdown. The entire website was <br />
+generated with Jekyll and is hosted for free on GitHub. If you happened <br />
+to read this far and/or tried setting up a website with Jekyll and <br />
+GitHub, <a href="https://twitter.com/theaustinlyons">let me know</a>! </p>
+    </section>
+
+  </article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <script src="../public/jquery.js?v=731201513b"></script>
+
+    <script type="text/javascript" src="../assets/js/main.js?v=731201513b"></script>
+
+</body>
+</html>

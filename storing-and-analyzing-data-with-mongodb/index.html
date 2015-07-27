@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Storing and Analyzing Data with MongoDB</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Storing and Analyzing Data with MongoDB">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Storing and Analyzing Data with MongoDB">
+    <meta property="og:description" content="">
+
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://127.0.0.1:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/uno.css?v=731201513b" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css?v=731201513b" />
+
+    <link rel="canonical" href="http://www.seeaustinhack.com/storing-and-analyzing-data-with-mongodb/" />
+    
+    <meta property="og:site_name" content="AUSTIN LYONS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Storing and Analyzing Data with MongoDB" />
+    <meta property="og:description" content="Storing your data as a .csv? You might consider using a  database. Read below to see an example of how to store scraped  data in MongoDB. Beyond Excel In the last post we used Scrapy to crawl the Des Moines..." />
+    <meta property="og:url" content="http://www.seeaustinhack.com/storing-and-analyzing-data-with-mongodb/" />
+    <meta property="article:published_time" content="2014-05-01T17:03:00.000Z" />
+    <meta property="article:modified_time" content="2014-06-17T23:04:31.327Z" />
+    <meta property="article:tag" content="archived" />
+    <meta property="article:tag" content="mongodb" />
+    <meta property="article:tag" content="data" />
+    <meta property="article:tag" content="analysis" />
+    <meta property="article:tag" content="tech" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Storing and Analyzing Data with MongoDB" />
+    <meta name="twitter:description" content="Storing your data as a .csv? You might consider using a  database. Read below to see an example of how to store scraped  data in MongoDB. Beyond Excel In the last post we used Scrapy to crawl the Des Moines..." />
+    <meta name="twitter:url" content="http://www.seeaustinhack.com/storing-and-analyzing-data-with-mongodb/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "AUSTIN LYONS",
+    "author": {
+        "@type": "Person",
+        "name": "Austin Lyons",
+        "image": "//www.gravatar.com/avatar/aed0bec360cc1029f8cb094c7cdb11e7?d=404",
+        "url": "http://www.seeaustinhack.com/author/austin-lyons",
+        "sameAs": "http://www.seeaustinhack.com",
+        "description": null
+    },
+    "headline": "Storing and Analyzing Data with MongoDB",
+    "url": "http://www.seeaustinhack.com/storing-and-analyzing-data-with-mongodb/",
+    "datePublished": "2014-05-01T17:03:00.000Z",
+    "dateModified": "2014-06-17T23:04:31.327Z",
+    "keywords": "archived, mongodb, data, analysis, tech",
+    "description": "Storing your data as a .csv? You might consider using a  database. Read below to see an example of how to store scraped  data in MongoDB. Beyond Excel In the last post we used Scrapy to crawl the Des Moines..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6" />
+    <link rel="alternate" type="application/rss+xml" title="AUSTIN LYONS" href="http://www.seeaustinhack.com/rss/" />
+
+</head>
+<body class="post-template tag-archived tag-mongodb tag-data tag-analysis tag-tech no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(../content/images/2014/Oct/may_the_sun_be_upon_your_face_by_fleurss.jpeg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <h1 class="panel-cover__title panel-title"><a href="http://www.seeaustinhack.com" title="link to homepage for AUSTIN LYONS">AUSTIN LYONS</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">Software Engineer</span>
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          <p>I am not the man I ought to be, I am not the man I wish to be, and I am not the man I hope to be, but by the grace of God, I am not the man I used to be.
+          <br>
+          John Newton <a href="http://books.google.com/books?id=mv4oAAAAYAAJ&dq=ah%2C%20how%20imperfect%20and%20deficient!%20I%20am%20not%20what%20I%20wish%20to%20be&pg=PA186#v=onepage&q=ah%2C%20how%20imperfect%20and%20deficient!%20I%20am%20not%20what%20I%20wish%20to%20be&f=false" target="_blank">(paraphrased)</a>
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="link to AUSTIN LYONS blog" class="blog-button">Technical Blog</a></li>
+              <li class="navigation__item"><a href="https://medium.com/@theaustinlyons/" class="blog-button" window="_blank">Product & Strategy Blog</a></li>
+              <li class="navigation__item"><a href="../reading-list/index.html" title="link to reading list" class="reading-button">Currently Reading</a></li>
+            </ul>
+          </nav>
+
+          
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+    <!-- GitHub -->
+    <li class="navigation__item">
+      <a href="https://github.com/austinlyons" title="Austin Lyons on GitHub">
+        <i class='icon icon-social-github'></i>
+        <span class="label">GitHub</span>
+      </a>
+    </li>
+
+    <!-- LinkedIn -->
+    <li class="navigation__item">
+      <a href="https://www.linkedin.com/in/austinlyons" title="Austin Lyons on LinkedIn">
+        <i class='icon icon-social-linkedin'></i>
+        <span class="label">LinkedIn</span>
+      </a>
+    </li>
+
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="http://twitter.com/theaustinlyons" title="@theaustinlyons on Twitter">
+      <i class='icon icon-social-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-slate"></div>
+  </div>
+</header>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-36006810-1', 'auto');
+              ga('send', 'pageview');
+
+</script>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+<!--          <div id="top-nav">
+            <ul>
+              <li><a href="/">Home</li>
+              <li><a href="/tag/tech/">Tech</li>
+              <li><a href="/tag/startups/">Startups</li>
+              <li><a href="/tag/faith/">Faith</a></li>
+              <li><a href="/tag/life/">Life</a></li>
+            </ul>
+          </div> -->
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="01 May 2014" class="post-meta__date date">01 May 2014</time> &#8226; <span class="post-meta__tags tags">on <a href="../tag/archived/index.html">archived</a>, <a href="../tag/mongodb/index.html">mongodb</a>, <a href="../tag/data/index.html">data</a>, <a href="../tag/analysis/index.html">analysis</a>, <a href="../tag/tech/index.html">tech</a></span>
+        <!--<span class="post-meta__author author"><img src="//www.gravatar.com/avatar/aed0bec360cc1029f8cb094c7cdb11e7?d=404" alt="profile image for Austin Lyons" class="avatar post-meta__avatar" /> by Austin Lyons</span>-->
+      </div>
+      <h1 class="post-title">Storing and Analyzing Data with MongoDB</h1>
+    </header>
+
+    <section class="post tag-archived tag-mongodb tag-data tag-analysis tag-tech">
+      <p>Storing your data as a .csv? You might consider using a <br />
+database. Read below to see an example of how to store scraped <br />
+data in MongoDB.</p>
+
+<h4 id="beyondexcel">Beyond Excel</h4>
+
+<p>In the last post we <a href="http://www.seeaustinhack.com/2013/09/06/obtaining-data-with-python-scrapy/">used Scrapy to crawl the Des Moines <br />
+Register's public salary database</a> <br />
+and obtained 443610 salary records. We stored the data in a text file. <br />
+Comma-separated or JSON formatted text files are nice because they're <br />
+easy to read, write, and distribute. However, sometimes it's more useful <br />
+to store the data in a database. For example, insights can be quickly <br />
+gained from querying data from a command-line interface, i.e. using <br />
+MySQL to figure out which store is highest grossing this month.</p>
+
+<pre><code>SELECT SUM(amount) as total
+FROM payment_receipts 
+WHERE YEAR(purchase_date) = YEAR(CURDATE()) 
+AND MONTH(purchase_date) = MONTH(CURDATE()) 
+GROUP BY store
+ORDER BY total DESC;
+</code></pre>
+
+<p>And what if we decided to scrape salary information for every state that <br />
+publishes it's information online? Would we want to deal with tens of <br />
+.csv files? Or one huge several GB .csv file? And what if many people
+wanted to access the data at any given time? It would probably be much <br />
+less of a hassle to write, maintain, manipulate, and share the data if we <br />
+just put all of the scraped salary records for every state into one big database. </p>
+
+<h4 id="mongodb">MongoDB</h4>
+
+<p>We could surely put the scraped data into an RDBMS database like MySQL. <br />
+But one advantage to using a <a href="http://en.wikipedia.org/wiki/Document-oriented_database">document-oriented database</a> like <a href="http://www.mongodb.org/">MongoDB</a> is schema flexibility. That <br />
+is, in MySQL we might define our salaries table like this: </p>
+
+<pre><code>mysql&gt; CREATE TABLE salaries(
+  -&gt;       id INT NOT NULL AUTO_INCREMENT,
+  -&gt;       employee VARCHAR(100) NOT NULL,
+  -&gt;       salary DECIMAL(10, 2),
+  -&gt;       year DATE,
+  -&gt;       department VARCHAR(100),
+  -&gt;       position VARCHAR(100),
+  -&gt;       county VARCHAR(100),
+  -&gt;       sex VARCHAR(1),
+  -&gt;       base_salary DECIMAL(10, 2),
+  -&gt;       extra_money DECIMAL(10, 2),
+  -&gt;       PRIMARY KEY ( id )
+  -&gt;    );
+Query OK, 0 rows affected (0.31 sec)
+</code></pre>
+
+<p>And as expected, we'd get the following table:</p>
+
+<pre><code>mysql&gt; describe salaries;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int(11)       | NO   | PRI | NULL    | auto_increment |
+| employee    | varchar(100)  | NO   |     | NULL    |                |
+| salary      | decimal(10,2) | YES  |     | NULL    |                |
+| year        | date          | YES  |     | NULL    |                |
+| department  | varchar(100)  | YES  |     | NULL    |                |
+| position    | varchar(100)  | YES  |     | NULL    |                |
+| county      | varchar(100)  | YES  |     | NULL    |                |
+| sex         | varchar(1)    | YES  |     | NULL    |                |
+| base_salary | decimal(10,2) | YES  |     | NULL    |                |
+| extra_money | decimal(10,2) | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+10 rows in set (0.07 sec)
+</code></pre>
+
+<p>We can easily store all 443610 records from the Iowa public salary <br />
+database in here. But what happens when we scrape <a href="http://datacenter.timesdispatch.com/databases/salaries-virginia-state-employees-2012/">Virginia's <br />
+database</a>, <br />
+which doesn't have sex or county information and has additional <br />
+interesting fields like hire date and years of service? We could add <br />
+additional columns to our salaries table to store the hire date and <br />
+years of service. However, all 443610 rows of Iowa data would be empty on those two columns. <br />
+We'd probably also have to rewrite any existing code <br />
+that adds/retrieves data from the database to deal with the two new <br />
+fields. As we keep adding states we'd have to continue to add columns <br />
+to our table, and keep rewriting code <br />
+fields. By the time we're done, our table would be very sparse; we'd <br />
+have lots of columns to store all of the possible salary related details, but most <br />
+rows would only have data for a few of the columns. There are schema <br />
+hacks to get around our sparse table, but then life starts getting complicated. <br />
+Instead, we can just use MongoDB's documents to store the <br />
+data in a concise, flexible, and easy to understand way. </p>
+
+<p>With documents we might represent a Virginia salary as</p>
+
+<pre><code>{
+    state = 'VA',
+    name = 'Paul Hewitt',
+    title = 'PROFESSIONAL - INSTRUCTOR',
+    salary = 744750,
+    hire_date = '05/02/2011',
+    agency = 'George Mason University',
+    years_service = 2,
+    year = '2012'
+}
+</code></pre>
+
+<p>and an Iowa salary as</p>
+
+<pre><code>{
+    state = 'IA',
+    name = 'Frederick K Hoiberg',
+    department = 'Iowa State University',
+    position = 'HEAD COACH',
+    salary = 908532
+    county = 'STORY'
+    sex = 'M',
+    year = '2012'
+}    
+</code></pre>
+
+<p>Just like any other database, with Mongo we can query to answer questions like <br />
+"What are the job titles of public employees made more than $250,000 in any state during 2012?" <br />
+Because the fields of each document may differ, one just has to be a bit more careful <br />
+when querying. In the example here, you'd need to make sure to ask Mongo <br />
+for the fields <code>title</code> and <code>position</code>, as they are both used to <br />
+represent the employee's job title.</p>
+
+<h4 id="makinglifesimple">Making life simple</h4>
+
+<p>There are many other reasons for and against using MongoDB to store data <br />
+for analysis. There are scaling issues, performance issues, <br />
+memory issues, yadda yadda yadda. They are worth knowing about. <br />
+But the intended audience for this post is anyone who needs an <br />
+easier way to manage and manipulate data than what they are currently <br />
+doing. If you're a social sciences graduate student, data-driven <br />
+journalist, or lab scientist with way too many formatted text files to keep track of, <br />
+try using a database. There are many options that would help (MySQL is a great place to start), and a <br />
+document-oriented database might be a good option for you.  </p>
+
+<p>And hey, if you're trying to get a job, it can't hurt to try out Mongo so you can at least <br />
+be conversational about it :) </p>
+
+<h4 id="gettingstarted">Getting Started</h4>
+
+<p>First, <a href="http://docs.mongodb.org/manual/installation/">install MongoDB</a>. <br />
+While it's installing, do the mini tutorial using the wonderful <a href="http://try.mongodb.org/">MongoDB <br />
+Browser shell</a>. <em>An interactive tutorial is the best tutorial. Props MongoDB team.</em></p>
+
+<h4 id="interactingwithpython">Interacting with Python</h4>
+
+<p>Let's make the <a href="http://www.seeaustinhack.com/2013/09/06/obtaining-data-with-python-scrapy/">Iowa public salary database <br />
+scraper</a> store it's data <br />
+to a database instead of a text file. We'll want to be able to interact <br />
+with MongoDB from a Python program, so let's <a href="http://api.mongodb.org/python/current/installation.html">install <br />
+pymongo</a>. </p>
+
+<pre><code>$ pip install pymongo
+</code></pre>
+
+<h4 id="gameplan">Game plan</h4>
+
+<p>Our plan is to modify the Iowa public salary database scraper to store <br />
+each entry to a MongoDB database. In particular, we'll use Scrapy's <br />
+<a href="http://doc.scrapy.org/en/0.18/topics/item-pipeline.html">item pipeline</a>
+to take each item as it comes it and write it to the database. Sound <br />
+simple? It is!</p>
+
+<h4 id="createthedatabase">Create the database</h4>
+
+<p>Let's fire up MongoDB and manually create a salary database. We'll <br />
+pretty much do the same as what the <a href="http://docs.mongodb.org/manual/tutorial/getting-started-with-the-mongo-shell/">MongoDB <br />
+tutorial</a> describes, so feel <br />
+free to reference it. </p>
+
+<p>First, open up another terminal tab or window and launch the MongoDB daemon process <code>mongod</code>.</p>
+
+<pre><code>$ mongod
+</code></pre>
+
+<p>By default, mongod will start listening for client connections on port 27017.</p>
+
+<p>You can either open another tab/window or kill the running mongod and <br />
+instead run it in the background.</p>
+
+<pre><code>$ mongod &amp;
+</code></pre>
+
+<p>Now we'll open the MongoDB shell.</p>
+
+<pre><code>$ mongo
+</code></pre>
+
+<p>Let's check what db we are connected to.</p>
+
+<pre><code>&gt; db
+</code></pre>
+
+<p>You're probably connected to <code>test</code>, the default database. For lack of a <br />
+better name, let's create a database called <code>scraped_data</code>.</p>
+
+<pre><code>&gt; use scraped_data
+</code></pre>
+
+<p>In the <code>scraped_data</code> database we'll create a <code>salaries</code> collection; a collection is simply a container that stores <br />
+documents (similar to a SQL table that stores rows of data). </p>
+
+<h4 id="pipeline">Pipeline</h4>
+
+<p>Now we'll update the <a href="https://github.com/austinlyons/iowa_salaries">salary <br />
+scraper code</a> to write to MongoDB as it's <br />
+scraping. If you have the code from the last post, you can skip this <br />
+step. Otherwise clone the source code from GitHub.</p>
+
+<pre><code>$ git clone git@github.com:austinlyons/iowa_salaries.git
+</code></pre>
+
+<p>Note that this will take a while to download because I put the resulting .csv and .json files in the same folder for people who just want to see the entire salary database without running the scraper. (I probably should have put these in a different repo.) </p>
+
+<p>Open the file <code>pipelines.py</code> in <code>scraper/iowa_salaries</code> directory. The <br />
+first thing we want to do is connect our Python program to our <br />
+<code>scraped_data</code> MongoDB database.
+Then we'll <a href="http://doc.scrapy.org/en/latest/topics/item-pipeline.html">do what the docs say we <br />
+must</a> and create a class that implements a <code>process_item</code> method. <br />
+We'll also write a little method to clean up the data (i.e. <a href="http://www.dataists.com/2010/09/a-taxonomy-of-data-science/">scrub the <br />
+data</a>). </p>
+
+<pre><code>from pymongo import MongoClient
+
+client = MongoClient()  
+db = client.scraped_data
+
+def _clean(salary):  
+    """
+    Transform the string '$55,000.00' into the integer 55000
+    """
+    if salary:
+        if '$' in salary:
+            salary = salary.replace('$', '')
+        if ',' in salary:
+            salary = salary.replace(',', '')
+        if '.' in salary:
+            salary = salary.split('.')[0]
+        if salary.isdigit():
+            salary = int(salary)
+        return salary
+    else:
+        return 0
+
+class iowa_salaries_pipeline(object):  
+    def process_item(self, item, spider):
+        print "writing to db: " + item.get('employee')
+        d = {}
+        d['year'] = item.get('year')
+        d['salary'] = item.get('salary')
+        d['employee'] = item.get('employee')
+        d['department'] = item.get('department')
+        d['position'] = item.get('position')
+        d['county'] = item.get('county')
+        d['sex'] = item.get('sex')
+        d['base_salary'] = item.get('base_salary')
+        d['extra_money'] = item.get('extra_money')
+        # let's strip off the dollar signs and just store the dollars as integers
+        d['salary'] = _clean(d['salary'])
+        d['base_salary'] = _clean(d['base_salary'])
+        d['extra_money'] = _clean(d['extra_money'])
+        db.salaries.insert(d)
+        return item
+{% endhighlight %}
+
+Last but not least, let's make Scrapy aware of the pipeline by adding it to settings.py.
+
+    ITEM_PIPELINES = ['iowa_salaries.pipelines.iowa_salaries_pipeline']
+
+#### Crawl
+Let's try crawling and writing the results to MongoDB using our new  
+pipeline.
+
+    $ scrapy crawl iowa_salaries
+
+#### Did it work?
+
+    $ mongo
+    MongoDB shell version: 2.4.5
+    connecting to: test
+    &gt; use scraped_data
+    switched to db scraped_data
+    &gt; show collections
+    salaries
+    system.indexes
+
+Our salaries collection exists. Good.
+
+{% highlight javascript %}
+&gt; db.salaries.find()
+{ "_id" : ObjectId("522e601754c3261054c52aef"), 
+  "salary" : 82456,
+  "extra_money" : 1879, 
+  "base_salary" : 82046,
+  "sex" : "M",
+  "county" : "BLACK HAWK", 
+  "department" : "UNIVERSITY OF NORTHERN IOWA",
+  "year" : "2012", 
+  "employee" : "SCHWAB DOUGLAS W", 
+  "position" : "HEAD COACH" }
+...
+Type "it" for more  
+</code></pre>
+
+<p>It looks like there is some data in the salaries collection already. My scraper is still <br />
+running, but let's see how much data has been collected so far using the <br />
+<a href="http://docs.mongodb.org/manual/reference/method/db.collection.stats/#db.collection.stats">stats</a>
+command.</p>
+
+<p>{% highlight javascript %}</p>
+
+<blockquote>
+  <p>db.salaries.stats(scale=1024)
+  {
+    "ns" : "scraped<em>data.salaries",
+    "count" : 103000,
+    "size" : 25301,
+    "avgObjSize" : 0.24564077669902912,
+    "storageSize" : 28540,
+    "numExtents" : 8,
+    "nindexes" : 1,
+    "lastExtentSize" : 10084,
+    "paddingFactor" : 1,
+    "systemFlags" : 1,
+    "userFlags" : 0,
+    "totalIndexSize" : 3281,
+    "indexSizes" : {
+      "</em>id_" : 3281
+    },
+    "ok" : 1
+  }
+  {% endhighlight %}</p>
+</blockquote>
+
+<p>Nice. We've collected over 100,000 records already and have around 25MB <br />
+of salary data.</p>
+
+<h3 id="analysis">Analysis</h3>
+
+<p>The whole purpose of obtaining the data is to sift through it for insights. <br />
+<a href="http://pandas.pydata.org/">pandas</a> is an awesome library for analyzing
+data in python. But let's just play a bit in the mongo shell.</p>
+
+<p>Side note: The data is pretty interesting on it's own, but it would be even <br />
+more interesting if it contained additional measured values like years of experience and age. <br />
+(Can we predict the salary you'd be offered in a given department if we know your age, years of experience, and sex? etc)</p>
+
+<p>How could we obtain date of birth for (most) Iowa public employees? <br />
+Just loop through every person we have a salary for and then query <br />
+<a href="https://www.iowacourts.state.ia.us/ESAWebApp/TrialSimpFrame">Iowa Courts
+Online</a>. If <br />
+they've ever gotten a speeding ticket, they'll be in this database, and <br />
+we'll find their full name and date of birth here. What happens if <br />
+multiple people with the same name are in the Iowa Courts Online <br />
+database? We can use their middle initial (if the salary record has it) <br />
+as well as the county given by the salary record. Odds are that the <br />
+originating county of the court document (ex: speeding ticket) is the same as the county in <br />
+which they work. :) This would be a fun project, but for now we'll just <br />
+play with our existing data.</p>
+
+<h4 id="howmanyemployeesatiowastateuniversitymaded150000in2012">How many employees at Iowa State University made > $150,000 in 2012?</h4>
+
+<pre><code>&gt; db.salaries.find({
+    department: "IOWA STATE UNIVERSITY", 
+    year: "2012",
+    salary: {'$gt': 150000}
+  }).count()
+254  
+</code></pre>
+
+<h4 id="whowerethey">Who were they?</h4>
+
+<pre><code>&gt; db.salaries.find({
+    department: "IOWA STATE UNIVERSITY", 
+    year: "2012",
+    salary: {'$gt': 150000}
+  },
+  {
+    employee: 1,
+    salary: 1,
+    _id: 0
+  })
+
+{ "salary" : 1425000, "employee" : "RHOADS PAUL R" }
+{ "salary" : 908531, "employee" : "HOIBERG FREDRICK K" }
+{ "salary" : 559999, "employee" : "FENNELLY WILLIAM MIC" }
+{ "salary" : 450000, "employee" : "POLLARD JAMIE B" }
+{ "salary" : 399559, "employee" : "GEOFFROY GREGORY L" }
+{ "salary" : 306353, "employee" : "BROWN ROBERT C" }
+{ "salary" : 303410, "employee" : "HIRA LABH S" }
+{ "salary" : 293777, "employee" : "KANTHASAMY ANUMANTHA" }
+{ "salary" : 293300, "employee" : "JOHNSON DUANE DOUGLA" }
+{ "salary" : 291720, "employee" : "WICKERT JONATHAN ADA" }
+{ "salary" : 284455, "employee" : "SCHNABLE PATRICK S" }
+{ "salary" : 281873, "employee" : "SOMANI ARUN K" }
+{ "salary" : 279125, "employee" : "QUISENBERRY SHARRON" }
+{ "salary" : 252033, "employee" : "CRUM MICHAEL ROBERT" }
+{ "salary" : 251670, "employee" : "NOLAN LISA K" }
+{ "salary" : 249209, "employee" : "HAYES DERMOT JAMES" }
+{ "salary" : 248379, "employee" : "WINTERSTEEN WENDY" }
+{ "salary" : 246225, "employee" : "BAGLEY RODNEY STEVEN" }
+{ "salary" : 246195, "employee" : "MESSINGHAM COURTNEY" }
+{ "salary" : 241781, "employee" : "GOLDMAN ALAN IRA" }
+Type "it" for more  
+</code></pre>
+
+<h4 id="howmanypeopledideachstatedepartmentemployin2012andwhatwasthemalefemalebreakdown">How many people did each state department employ in 2012, and what was the male/female breakdown?</h4>
+
+<pre><code>&gt; db.salaries.group({
+     key: {department:1},
+     reduce: function(curr, result) {
+       if(curr.year == "2012"){
+         result.total += 1;
+         if (curr.sex == "M"){
+             result.male += 1;
+         }
+         else{
+             result.female += 1;
+         }
+       }
+     },
+     initial: {total: 0, male: 0, female: 0}
+   })
+</code></pre>
+
+<p>The results are many, here are a few:</p>
+
+<pre><code>{
+  "department" : "LEGISLATIVE - SENATE",
+  "total" : 170,
+  "male" : 80,
+  "female" : 90
+},
+{
+  "department" : "LEGISLATIVE - HOUSE",
+  "total" : 282,
+  "male" : 145,
+  "female" : 137
+},
+{
+  "department" : "IOWA STATE UNIVERSITY",
+  "total" : 9970,
+  "male" : 5212,
+  "female" : 4758
+},
+{
+  "department" : "UNIVERSITY OF IOWA",
+  "total" : 12785,
+  "male" : 6060,
+  "female" : 6725
+},
+{
+  "department" : "UNIVERSITY OF NORTHERN IOWA",
+  "total" : 2550,
+  "male" : 1114,
+  "female" : 1436
+},
+{
+  "department" : "UNIVERSITY OF IOWA HOSPITAL &amp; CLINICS",
+  "total" : 7599,
+  "male" : 1975,
+  "female" : 5624
+}
+</code></pre>
+
+<p>Let's verify by finding a small result and checking it against the Des <br />
+Moines Register's results.</p>
+
+<pre><code>{
+  "department" : "BOARD OF REGENTS",
+  "total" : 13,
+  "male" : 5,
+  "female" : 8
+}
+</code></pre>
+
+<p>Sure enough, that matches exactly with what the Des Moines Register <br />
+shows if we search for <a href="http://data.desmoinesregister.com/dmr/dmr-public-records/state_salaries.php?keyEMPLOYEE=&amp;keyFISCAL_YEAR=2012&amp;keyDEPARTMENT=BOARD+OF+REGENTS">2012 Board of Regents <br />
+salaries</a>.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>In summary, a document-oriented database like MongoDB can be used to store and analyze data scraped from the web. </p>
+    </section>
+
+  </article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+</footer>
+        </div>
+    </div>
+
+    <script src="../public/jquery.js?v=731201513b"></script>
+
+    <script type="text/javascript" src="../assets/js/main.js?v=731201513b"></script>
+
+</body>
+</html>

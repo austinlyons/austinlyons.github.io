@@ -1,0 +1,11 @@
+#top-nav ul {
+  list-style-type: none; 
+  margin: 0;
+  padding: 10px 0px 10px 0px;
+}
+
+#top-nav li {
+  display: inline; 
+  padding-right: 10px;
+}
+
