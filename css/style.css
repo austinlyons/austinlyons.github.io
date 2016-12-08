@@ -1,0 +1,304 @@
+/*
+	General styles
+*/
+body {
+	font-family: "Source Sans Pro", Arial, sans-serif;
+	background-color: #fff;
+  color: #222020;
+	font-size: 3vh;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body, html {
+	height: 100%
+}
+
+h1, h2, h3, h4 {
+	font-family: "Playfair Display", serif;
+}
+h1 {
+	font-weight: bold;
+	font-size: 10vh;
+}
+h2 {
+	font-size: 6vh;
+}
+h3 {
+  font-size: 4vh;
+}
+a, a:visited {
+	text-decoration: none;
+	color: #2e639e;
+}
+a:hover {
+	text-decoration: underline;
+}
+.touchonly {
+	display: none;
+}
+html.touch .touchonly {
+	display: block;
+}
+.noselect * {
+	user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+}
+.doselect * {
+	user-select: auto;
+	-webkit-user-select: auto;
+	-khtml-user-select: auto;
+	-moz-user-select: auto;
+	-o-user-select: auto;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+/*
+	Containers
+*/
+#
+#content-wrapper, #example-wrapper {
+	height: 100%;
+}
+.scrollContainer {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 100%
+}
+.scrollContainer {
+	height: 100%;
+	margin: auto;
+}
+#example-wrapper .scrollContent {
+	height: 100%;
+}
+
+.horizontal.scrollContainer {
+	overflow-y: hidden;
+	overflow-x: scroll;
+}
+#example-wrapper.scrollContainer .scrollContent {
+	width: 100%;
+	height: auto;
+}
+#example-wrapper.scrollContainer.horizontal .scrollContent {
+	width: auto;
+	height: 100%;
+}
+#example-wrapper.horizontal {
+	white-space: nowrap;
+	font-size: 0;  /* fix for spaces between inline block divs */
+}
+#example-wrapper.horizontal div {
+	font-size: 13px;
+}
+#example-wrapper .scrollContent, #example-wrapper.horizontal .scrollContent {
+	font-size: 0;
+}
+#example-wrapper .scrollContent div {
+	font-size: 13px;
+}
+#example-wrapper section {
+}
+
+section#main {
+	text-align: center;
+	position: relative;
+	height: 100%;
+	min-height: 500px;
+	min-width: 100%;
+	height: 100vh;  display: flex;
+  justify-content: center;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+  background-image: url("../img/adventure.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+.horizontal section, .horizontal section#main{
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+}
+
+section#main #description {
+  text-shadow: 0vh 0.1vh 0.1vh black;
+}
+section#main.home #description {
+	padding-top: 0;
+	padding-bottom: 100px;
+}
+section#main #description h1 {
+	margin: 0;
+}
+section#main #description h2 {
+	margin-bottom: 20px;
+}
+section#main #description a.viewsource {
+	margin-bottom: 20px;
+	display: inline-block;
+}
+section#main #description code {
+	background-color: #E1F1FF;
+	padding-left: 2px;
+	padding-right: 2px;
+	white-space: nowrap;
+}
+
+section#main #description ol, section#main #description p {
+	text-align: left;
+	max-width: 400px;
+	margin: 10px auto 10px auto;
+	white-space: normal;
+}
+section#main #description ol {
+	list-style-position: outside;
+}
+section#main #description:after {
+	content: "↧";
+	font-size: 40px;
+	display: block;
+}
+#example-wrapper.horizontal section#main #description:after {
+	content: "↦";
+}
+
+.parallaxParent {
+  height: 90vh;
+  overflow: hidden;
+}
+.parallaxParent > * {
+  height: 100vh;
+  position: relative;
+  top: -40vh;
+}
+.parallaxParent .bg-img {
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parallaxParent .bg-img h1 {
+  color: white;
+  text-shadow: 0vh 0.1vh 0.1vh black;
+}
+.content {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5vh 5vw;
+  min-height: 60vh;
+}
+#main-content {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.content h1 {
+  font-weight: bold;
+  font-size: 10vh;
+}
+.content h2 {
+  font-weight: bold;
+  font-size: 4vh;
+}
+.content .project {
+  margin-bottom: 3vh;
+}
+.content .project h1 {
+  margin: 0;
+  padding: 0
+}
+#name {
+  position: absolute;
+  top: 4vh;
+  left: 4vw;
+}
+#name h1 {
+  font-size: 3.5vh;
+}
+#portfolio h1 {
+  font-size: 7vh;
+}
+#writing {
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5vh 5vw;
+}
+#fun {
+  /*font-size: 3vh;*/
+}
+.social-media {
+  display: flex;
+}
+.social-media a {
+  text-decoration: none;
+  display: inline;
+}
+.social-media svg {
+  margin: 0 1vw;
+  transition: all .2s ease-in-out;
+}
+.social-media svg:hover {
+  transform: scale(1.2);
+}
+.social-media svg:hover path {
+  fill: #1553c5;
+}
+ul.articles li {
+  display: block;
+  margin-bottom: 3vh;
+}
+ul.articles span.date {
+  font-size: 2vh;
+  font-weight: 400;
+  display: block;
+}
+ul.articles span.title a {
+  font-size: 4vh;
+  font-weight: 700;
+}
+ul.articles span.tags {
+  font-size: 2vh;
+  color: #B7B7B7;
+  margin-left: 0.5vw;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh 0;
+  font-size: 2vh;
+}
+
+/* small devices */
+@media only screen and (max-device-width: 767px) {
+  .content h1 { font-size: 8vh; }
+  #name { left: 26vw; }
+  #name h1 { font-size: 4.5vh; }
+}
